@@ -1,5 +1,11 @@
 "use client";
 
+import * as z from "zod";
+import { useForm } from "react-hook-form";
+import { Form } from "../ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { UserValidation } from "@/lib/validations/user";
+
 interface Props {
   user: {
     id: string;
@@ -13,7 +19,21 @@ interface Props {
 }
 
 function AccountProfile({ user, btnTitle }: Props) {
-  return <div className="text-light-2">Account Profile</div>;
+  const form = useForm<z.infer<typeof UserValidation>>({
+    resolver: zodResolver(UserValidation),
+    defaultValues: {
+      profile_photo: user?.image ? user.image : "",
+      name: user?.name ? user.name : "",
+      username: user?.username ? user.username : "",
+      bio: user?.bio ? user.bio : "",
+    },
+  });
+
+  return (
+    <Form {...form}>
+      <form></form>
+    </Form>
+  );
 }
 
 export default AccountProfile;
