@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 interface Props {
   user: {
@@ -51,10 +52,29 @@ function AccountProfile({ user, btnTitle }: Props) {
       >
         <FormField
           control={form.control}
-          name="username"
+          name="profile_photo"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
+            <FormItem className="flex items-center gap-4">
+              <FormLabel className="account-form_image-label">
+                {field.value ? (
+                  <Image
+                    src={field.value}
+                    alt="profile photo"
+                    priority
+                    width={96}
+                    height={96}
+                    className="rounded-full object-contain"
+                  />
+                ) : (
+                  <Image
+                    src="/assets/profile.svg"
+                    alt="profile photo"
+                    width={24}
+                    height={24}
+                    className="object-contain"
+                  />
+                )}
+              </FormLabel>
               <FormControl>
                 <Input placeholder="shadcn" {...field} />
               </FormControl>
