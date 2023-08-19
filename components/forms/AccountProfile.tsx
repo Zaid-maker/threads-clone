@@ -45,7 +45,10 @@ function AccountProfile({ user, btnTitle }: Props) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col justify-start gap-10"
+      >
         <FormField
           control={form.control}
           name="username"
