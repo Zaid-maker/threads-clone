@@ -9,14 +9,14 @@ async function Page() {
 
   const userInfo = fetchUser(user.id);
 
-  //const userData = {
-  //  id: user.id,
-  //  objectId: userInfo?._id,
-  //  username: userInfo ? userInfo?.username : user.username,
-  //  name: userInfo ? userInfo?.name : user.firstName ?? "",
-  //  bio: userInfo ? userInfo?.bio : "",
-  //  image: userInfo ? userInfo?.image : user.imageUrl,
-  //};
+  const userData = {
+    id: user.id,
+    objectId: userInfo?._id,
+    username: userInfo ? userInfo?.username : user.username,
+    name: userInfo ? userInfo?.name : user.firstName ?? "",
+    bio: userInfo ? userInfo?.bio : "",
+    image: userInfo ? userInfo?.image : user.imageUrl,
+  };
 
   return (
     <main className="mx-auto flex max-w-3xl flex-col justify-start px-10 py-20">
@@ -26,7 +26,7 @@ async function Page() {
       </p>
 
       <section className="mt-9 bg-dark-2 p-10">
-        <AccountProfile />
+        <AccountProfile user={userData} btnTitle="Continue" />
       </section>
     </main>
   );
