@@ -10,6 +10,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useUploadThing } from "@/lib/uploadthing";
+import { isBase64Image } from "@/lib/utils";
 import { UserValidation } from "@/lib/validations/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
@@ -30,6 +32,8 @@ interface Props {
 }
 
 function AccountProfile({ user, btnTitle }: Props) {
+  const { startUpload } = useUploadThing("media");
+
   const [files, setFiles] = useState<File[]>([]);
 
   const form = useForm<z.infer<typeof UserValidation>>({
@@ -67,9 +71,21 @@ function AccountProfile({ user, btnTitle }: Props) {
     }
   };
 
-  function onSubmit(values: z.infer<typeof UserValidation>) {
-    console.log(values);
-  }
+  const onSubmit = async (values: z.infer<typeof UserValidation>) => {
+    const blob = values.profile_photo;
+
+    const hasImageChanged = isBase64Image(blob);
+
+    if (hasImageChanged) {
+      const imgRes = await startUpload(files);
+
+      if (imgRes && imgRes[0].fileUrl) {
+        values.profile_photo = imgRes[0].fileUrl;
+      }
+    }
+
+    // TODO: update user profile
+  };
 
   return (
     <Form {...form}>
