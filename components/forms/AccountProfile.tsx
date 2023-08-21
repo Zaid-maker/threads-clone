@@ -1,5 +1,12 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
+import { ChangeEvent, useState } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -10,16 +17,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { updateUser } from "@/lib/actions/user.actions";
+import { Textarea } from "@/components/ui/textarea";
+
 import { useUploadThing } from "@/lib/uploadthing";
 import { isBase64Image } from "@/lib/utils";
+
+import { updateUser } from "@/lib/actions/user.actions";
 import { UserValidation } from "@/lib/validations/user";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
-import { ChangeEvent, useState } from "react";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
 
 interface Props {
   user: {
@@ -194,7 +198,7 @@ function AccountProfile({ user, btnTitle }: Props) {
                 Bio
               </FormLabel>
               <FormControl>
-                <textarea
+                <Textarea
                   rows={10}
                   className="account-form_input no-focus"
                   {...field}
@@ -205,7 +209,7 @@ function AccountProfile({ user, btnTitle }: Props) {
           )}
         />
         <Button type="submit" className="bg-primary-500">
-          Submit
+          {btnTitle}
         </Button>
       </form>
     </Form>
