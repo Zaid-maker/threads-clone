@@ -24,7 +24,7 @@ interface Props {
   userId: string;
 }
 
-function PostThread() {
+function PostThread({ userId }: Props) {
   const form = useForm<z.infer<typeof ThreadValidation>>({
     resolver: zodResolver(ThreadValidation),
     defaultValues: {

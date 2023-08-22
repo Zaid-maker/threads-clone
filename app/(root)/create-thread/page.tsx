@@ -11,13 +11,13 @@ async function Page() {
   // @ts-ignore
   const userInfo = await fetchUser(user.id);
 
-  // if (!userInfo?.onboarded) redirect("/onboarding");
+  if (!userInfo?.onboarded) redirect("/onboarding");
 
   return (
     <>
       <h1 className="head-text">Create Thread</h1>
 
-      <PostThread />
+      <PostThread userId={userInfo._id} />
     </>
   );
 }
