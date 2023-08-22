@@ -25,6 +25,8 @@ interface Props {
 }
 
 function PostThread({ userId }: Props) {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof ThreadValidation>>({
     resolver: zodResolver(ThreadValidation),
     defaultValues: {
@@ -32,9 +34,16 @@ function PostThread({ userId }: Props) {
     },
   });
 
+  const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
+    router.push("/");
+  };
+
   return (
     <Form {...form}>
-      <form className="mt-10 flex flex-col justify-start gap-10">
+      <form
+        className="mt-10 flex flex-col justify-start gap-10"
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
         <FormField
           control={form.control}
           name="thread"
