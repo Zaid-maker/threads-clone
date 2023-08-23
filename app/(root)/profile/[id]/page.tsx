@@ -1,5 +1,15 @@
-function Page() {
-  return <div className="head-text">Profile Page</div>
-} 
+import { Tabs, TabsList } from "@/components/ui/tabs";
 
-export default Page
+function Page() {
+  return (
+    <section>
+      <div className="mt-0">
+        <Tabs defaultValue="threads" className="w-full">
+          <TabsList className="tab">WORKING!!!!</TabsList>
+        </Tabs>
+      </div>
+    </section>
+  );
+}
+
+export default Page;
