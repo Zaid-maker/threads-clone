@@ -31,6 +31,7 @@ function PostThread({ userId }: Props) {
     resolver: zodResolver(ThreadValidation),
     defaultValues: {
       thread: "",
+      accountId: userId,
     },
   });
 
