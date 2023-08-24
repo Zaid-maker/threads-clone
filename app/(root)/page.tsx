@@ -2,6 +2,7 @@ import { fetchPosts } from "@/lib/actions/thread.actions";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import ThreadCard from "@/components/cards/ThreadCard";
 
 export default async function Home() {
   const user = await currentUser();
@@ -24,7 +25,7 @@ export default async function Home() {
         ) : (
           <>
             {result.posts.map((post) => (
-              <div
+              <ThreadCard
                 key={post._id}
                 id={post._id}
                 currentUserId={user.id}
