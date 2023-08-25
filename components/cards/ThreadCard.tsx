@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 interface Props {
   id: string;
   currentUserId: string;
@@ -32,6 +35,24 @@ function ThreadCard({
   createdAt,
   comments,
   isComment,
-}: Props) {}
+}: Props) {
+  return (
+    <article
+      className={`flex w-full flex-col rounded-xl ${
+        isComment ? "px-0 xs:px-7" : "bg-dark-2 p-7"
+      }`}
+    >
+      <div>
+        <div>
+          <div>
+            <Link href={`/profuke/${author.id}`}>
+              <Image src={author.image} alt="user_community_image" fill />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 export default ThreadCard;
