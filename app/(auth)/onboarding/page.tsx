@@ -8,22 +8,16 @@ async function Page() {
 
   if (!user) return null;
 
-  const userInfo = fetchUser(user.id);
+  const userInfo = await fetchUser(user.id);
 
-  // @ts-ignore
   if (userInfo?.onboarded) redirect("/");
 
   const userData = {
     id: user.id,
-    // @ts-ignore
     objectId: userInfo?._id,
-    // @ts-ignore
     username: userInfo ? userInfo?.username : user.username,
-    // @ts-ignore
     name: userInfo ? userInfo?.name : user.firstName ?? "",
-    // @ts-ignore
     bio: userInfo ? userInfo?.bio : "",
-    // @ts-ignore
     image: userInfo ? userInfo?.image : user.imageUrl,
   };
 
