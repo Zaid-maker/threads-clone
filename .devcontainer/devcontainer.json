@@ -11,7 +11,11 @@
   },
   "customizations": {
     "vscode": {
-      "extensions": ["esbenp.prettier-vscode", "GitHub.vscode-github-actions"]
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "GitHub.vscode-github-actions",
+        "bradlc.vscode-tailwindcss"
+      ]
     }
   },
   "forwardPorts": [3000]
