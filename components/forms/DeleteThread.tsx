@@ -1,3 +1,5 @@
+"use client";
+
 import { deleteThread } from "@/lib/actions/thread.actions";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
