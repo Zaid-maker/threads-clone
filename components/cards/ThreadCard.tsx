@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import DeleteThread from "../forms/DeleteThread";
 
 interface Props {
   id: string;
@@ -110,6 +111,14 @@ function ThreadCard({
             </div>
           </div>
         </div>
+
+        <DeleteThread
+          threadId={JSON.stringify(id)}
+          currentUserId={currentUserId}
+          authorId={author.id}
+          parentId={parentId}
+          isComment={isComment}
+        />
       </div>
     </article>
   );
