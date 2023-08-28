@@ -37,6 +37,14 @@ export async function createThread({
   }
 }
 
+export async function deleteThread(id: string, path: string): Promise<void> {
+  try {
+    connectDB()
+  } catch (error: any) {
+    throw new Error(`Failed to delete thread: ${error.message}`)
+  }
+}
+
 export async function fetchPosts(pageNumber = 1, pageSize = 20) {
   connectDB();
 
